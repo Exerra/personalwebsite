@@ -56,7 +56,9 @@ function Layout({children}) {
 			<div>
 				<div className={"bg-body font-poppins"}>{children}</div>
 			</div>
-			<footer className={"min-h-screen md:min-h-0"}></footer>
+			<footer className={"p-10"}>
+				<p className={"text-center"}>&copy; Exerra</p>
+			</footer>
 		</div>
 	);
 }

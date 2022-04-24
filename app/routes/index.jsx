@@ -71,7 +71,7 @@ export default function Index() {
 				{header()}
 			</div>
 
-			<div className={"container mt-64 justify-between mx-auto px-8 md:px-14 lg:px-24 w-full h-screen"}>
+			<div className={"container mt-64 justify-between mx-auto px-8 md:px-14 lg:px-24 w-full"}>
 				<h2 className="text-5xl font-bold pb-10">Some of my work</h2>
 				<div className={"flex flex-wrap gap-6"}>
 					{workView}
