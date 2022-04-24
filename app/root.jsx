@@ -15,7 +15,11 @@ export function links() {
 
 export const meta = () => ({
 	charset: "utf-8",
-	title: "New Remix App",
+	title: "Exerra",
+	description: "Exerra's website",
+	"og-type": "website",
+	"og-title": "Exerra",
+	"og-description": "Exerra's website",
 	viewport: "width=device-width,initial-scale=1",
 });
 
