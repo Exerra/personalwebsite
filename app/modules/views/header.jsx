@@ -2,8 +2,6 @@
     Created by Exerra on 24/04/2022
 */
 
-
-import {useEffect, useState} from "react";
 import {discord, github, music, twitter} from "../icons";
 
 class Button extends React.Component {
@@ -20,12 +18,6 @@ class Button extends React.Component {
 
 
 export default function header() {
-	const [state, setState] = useState(null)
-
-	useEffect(() => {
-		setState(window.outerWidth)
-	})
-
 	return (
 		<div className={"container mt-16 justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full pt-52 lg:pt-16"}>
 			<div className={"lg:ml-20 justify-center md:justify-start max-w-xl mt-0 md:my-36"}>
