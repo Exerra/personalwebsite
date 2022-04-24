@@ -1,8 +1,8 @@
 import {eye, github, twitter} from "../modules/icons";
 import header from "../modules/views/header";
 import {useLoaderData} from "@remix-run/react";
-import {useEffect, useState} from "react";
 import navbar from "../modules/views/navbar";
+import React from "react";
 
 export let loader = () => {
 	let work = [
