@@ -56,7 +56,7 @@ function Layout({children}) {
 			<div>
 				<div className={"bg-body font-poppins"}>{children}</div>
 			</div>
-			<footer className={"mt-10"}></footer>
+			<footer style={{ minHeight: "100vh" }}></footer>
 		</div>
 	);
 }
