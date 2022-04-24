@@ -17,9 +17,11 @@ export const meta = () => ({
 	charset: "utf-8",
 	title: "Exerra",
 	description: "Exerra's website",
-	"og-type": "website",
-	"og-title": "Exerra",
-	"og-description": "Exerra's website",
+	"og:type": "website",
+	"og:title": "Exerra",
+	"og:description": "Exerra's website",
+	"twitter:card": "summary_large_image",
+	"twitter:image": "https://cdn.exerra.xyz/png/pfp.png",
 	viewport: "width=device-width,initial-scale=1",
 });
 
