@@ -101,6 +101,14 @@ class Knowledge extends React.Component {
 	}
 }
 
+class Title extends React.Component {
+	render() {
+		return (
+			<h2 className="text-5xl font-bold pb-10">{this.props.children}</h2>
+		)
+	}
+}
+
 export default function Index() {
 	let data = useLoaderData()
 
@@ -112,8 +120,8 @@ export default function Index() {
 				{header()}
 			</div>
 
-			<div className={"container mt-64 justify-between mx-auto px-8 md:px-14 lg:px-24 w-full"}>
-				<h2 className="text-5xl font-bold pb-10">Some of my work</h2>
+			<div className={"container mt-32 justify-between mx-auto px-8 md:px-14 lg:px-24 w-full"}>
+				<Title>Some of my work</Title>
 				<div className={"flex flex-wrap gap-6"}>
 					{data.work.map(work => (
 						<Work key={work.name} date={work.date} name={work.name} description={work.description} href={work.url != "" ? work.url : null}/>
@@ -122,7 +130,7 @@ export default function Index() {
 			</div>
 
 			<div className={"container mt-32 justify-between mx-auto px-8 md:px-14 lg:px-24 w-full"}>
-				<h2 className="text-5xl font-bold pb-10">My knowledge</h2>
+				<Title>My knowledge</Title>
 				<div className={"flex gap-6 flex-wrap"}>
 					{data.knowledge.map(knowledge => (
 						<Knowledge key={knowledge.name} name={knowledge.name} type={knowledge.type} />
