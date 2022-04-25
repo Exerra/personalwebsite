@@ -103,16 +103,6 @@ class Knowledge extends React.Component {
 
 export default function Index() {
 	let data = useLoaderData()
-	let workView = []
-	let knowledgeView = []
-
-	for (let work of data.work) {
-		workView.push(<Work key={work.name} date={work.date} name={work.name} description={work.description} href={work.url != "" ? work.url : null}/>)
-	}
-
-	for (let knowledge of data.knowledge) {
-		knowledgeView.push(<Knowledge key={knowledge.name} name={knowledge.name} type={knowledge.type} />)
-	}
 
 	return (
 		<div>
@@ -125,14 +115,18 @@ export default function Index() {
 			<div className={"container mt-64 justify-between mx-auto px-8 md:px-14 lg:px-24 w-full"}>
 				<h2 className="text-5xl font-bold pb-10">Some of my work</h2>
 				<div className={"flex flex-wrap gap-6"}>
-					{workView}
+					{data.work.map(work => (
+						<Work key={work.name} date={work.date} name={work.name} description={work.description} href={work.url != "" ? work.url : null}/>
+					))}
 				</div>
 			</div>
 
 			<div className={"container mt-32 justify-between mx-auto px-8 md:px-14 lg:px-24 w-full"}>
 				<h2 className="text-5xl font-bold pb-10">My knowledge</h2>
 				<div className={"flex gap-6 flex-wrap"}>
-					{knowledgeView}
+					{data.knowledge.map(knowledge => (
+						<Knowledge key={knowledge.name} name={knowledge.name} type={knowledge.type} />
+					))}
 				</div>
 			</div>
 		</div>
