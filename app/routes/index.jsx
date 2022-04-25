@@ -1,4 +1,4 @@
-import {eye, github, twitter} from "../modules/icons";
+import {checkmark, eye, github, twitter} from "../modules/icons";
 import header from "../modules/views/header";
 import {useLoaderData} from "@remix-run/react";
 import navbar from "../modules/views/navbar";
@@ -38,14 +38,49 @@ export let loader = () => {
 		}
 	]
 
-	return {work}
+	let knowledge = [
+		{
+			type: "Language",
+			name: "HTML"
+		},
+		{
+			type: "Language",
+			name: "CSS"
+		},
+		{
+			type: "Language",
+			name: "Javascript"
+		},
+		{
+			type: "Language",
+			name: "NodeJS"
+		},
+		{
+			type: "Language",
+			name: "Swift"
+		},
+		{
+			type: "Framework",
+			name: "React"
+		},
+		{
+			type: "Framework",
+			name: "Remix"
+		},
+		{
+			type: "Framework",
+			name: "Express"
+		},
+	]
+
+	return {work, knowledge}
 }
 
 class Work extends React.Component {
 	render() {
 		return (
 			<div className={"w-full basis-1/1 grow lg:basis-1/3 shadow-2xl bg-white rounded-lg p-10"}>
-				<h2 className="font-sm font-bold text-purple-400">{this.props.date}</h2>
+				<h2 className="font-sm font-bold text-highlight">{this.props.date}</h2>
 				<h2 id="work" className="text-3xl font-bold">{this.props.name}</h2>
 				<p className="section-paragraph">{this.props.description}</p>
 				<br />
@@ -55,12 +90,28 @@ class Work extends React.Component {
 	}
 }
 
+class Knowledge extends React.Component {
+	render() {
+		return (
+			<div className={"w-full basis-1/3 grow lg:basis-1/5 shadow-2xl bg-white rounded-lg p-10"}>
+				<h2 className="font-sm font-bold text-highlight">{this.props.type}</h2>
+				<h3 className={"text-3xl font-bold"}>{this.props.name}</h3>
+			</div>
+		)
+	}
+}
+
 export default function Index() {
 	let data = useLoaderData()
 	let workView = []
+	let knowledgeView = []
 
 	for (let work of data.work) {
 		workView.push(<Work key={work.name} date={work.date} name={work.name} description={work.description} href={work.url != "" ? work.url : null}/>)
+	}
+
+	for (let knowledge of data.knowledge) {
+		knowledgeView.push(<Knowledge key={knowledge.name} name={knowledge.name} type={knowledge.type} />)
 	}
 
 	return (
@@ -75,6 +126,13 @@ export default function Index() {
 				<h2 className="text-5xl font-bold pb-10">Some of my work</h2>
 				<div className={"flex flex-wrap gap-6"}>
 					{workView}
+				</div>
+			</div>
+
+			<div className={"container mt-32 justify-between mx-auto px-8 md:px-14 lg:px-24 w-full"}>
+				<h2 className="text-5xl font-bold pb-10">My knowledge</h2>
+				<div className={"flex gap-6 flex-wrap"}>
+					{knowledgeView}
 				</div>
 			</div>
 		</div>
