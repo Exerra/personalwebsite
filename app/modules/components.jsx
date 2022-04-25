@@ -47,3 +47,11 @@ export class Section extends React.Component {
 		)
 	}
 }
+
+export class Divider extends React.Component {
+	render() {
+		return (
+			<span className={"opacity-40 animate-pulse"}>•</span>
+		)
+	}
+}

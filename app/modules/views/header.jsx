@@ -3,11 +3,12 @@
 */
 
 import {discord, github, music, twitter} from "../icons";
+import {Divider} from "../components";
 
 class Button extends React.Component {
 	render() {
 		return (
-			<button>
+			<button aria-label={this.props.label}>
 				<a href={this.props.href} target={"_blank"} className={"fill-gray-500 hover:fill-selected-text"}>
 					{this.props.icon}
 				</a>
@@ -23,12 +24,12 @@ export default function header() {
 			<div className={"lg:ml-20 justify-center md:justify-start max-w-xl mt-0 md:my-36"}>
 				<h1 className={"font-bold text-7xl lg:text-9xl text-center md:text-left"}>Amelia</h1><br/>
 
-				<h3 className={"font-bold text-2xl lg:text-3xl text-center md:text-left"}>Full-stack developer <span className={"opacity-40 animate-pulse"}>•</span> she/her</h3><br/>
+				<h3 className={"font-bold text-2xl lg:text-3xl text-center md:text-left"}>Full-stack developer <Divider /> she/her</h3><br/>
 
 				<div className="bg-theme text-gray-400 font-bold text-center items-center md:text-left fill-blue-400 space-x-5">
-					<Button href={"https://twitter.com/Exerra"} icon={twitter(48)} />
-					<Button href={"https://github.com/Exerra"} icon={github(48)} />
-					<Button href={"https://guild.exerra.xyz"} icon={discord(48)} />
+					<Button href={"https://twitter.com/Exerra"} icon={twitter(48)} label={"Link to twitter"} />
+					<Button href={"https://github.com/Exerra"} icon={github(48)} label={"Link to github"} />
+					<Button href={"https://guild.exerra.xyz"} icon={discord(48)} label={"Link to discord"} />
 				</div>
 			</div>
 		</div>
