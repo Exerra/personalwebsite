@@ -32,16 +32,24 @@ export class Knowledge extends React.Component {
 export class Title extends React.Component {
 	render() {
 		return (
-			<h2 className="text-5xl font-bold pb-10">{this.props.children}</h2>
+			<h2 className={`text-5xl font-bold pb-${this.props.hasSubheading ? "3" : "10"}`}>{this.props.children}</h2>
 		)
+	}
+}
+
+export class Subtitle extends React.Component {
+	render() {
+		return <h2 className="text-3xl text-gray-600 pb-10">{this.props.children}</h2>
 	}
 }
 
 export class Section extends React.Component {
 	render() {
+		console.log(this.props.subtitle)
 		return (
 			<div className={"container mt-32 justify-between mx-auto px-8 md:px-14 lg:px-24 w-full"}>
-				<Title>{this.props.name}</Title>
+				<Title hasSubheading={this.props.subtitle != undefined ? true : false}>{this.props.name}</Title>
+				{this.props.subtitle != undefined ? <Subtitle>{this.props.subtitle}</Subtitle> : console.log("huh")}
 				{this.props.children}
 			</div>
 		)

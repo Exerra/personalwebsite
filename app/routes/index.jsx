@@ -88,7 +88,7 @@ export default function Index() {
 				{header()}
 			</div>
 
-			<Section name={"Some of my work"}>
+			<Section name={"Showcase"}>
 				<div className={"flex flex-wrap gap-6"}>
 					{data.work.map(work => (
 						<Work key={work.name} date={work.date} name={work.name} description={work.description} href={work.url != "" ? work.url : null}/>
