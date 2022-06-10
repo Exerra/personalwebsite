@@ -110,7 +110,7 @@ export default function Index() {
 		new KonamiCode(() => { // we do some mild trolling
 			alert("youre a nerd, like, really??? do you just randomly type the konami code in websites for fun??? get a life\n\n but thank u for visiting my website 💜")
 		})
-	}, [1])
+	})
 
 	return (
 		<div>
