@@ -2,10 +2,16 @@ import {checkmark, eye, github, twitter} from "../modules/icons";
 import header from "../modules/views/header";
 import {useLoaderData} from "@remix-run/react";
 import navbar from "../modules/views/navbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Section, Knowledge, Work} from "../modules/components";
+import KonamiCode from "konami-code-js" // very needed
 
-export let loader = () => {
+export let loader = async () => {
+
+	let apiKey = `6aed96567bff1137f593099e9134b3d0` // maybe bad, maybe not. It will be public in network requests anyways lol so
+
+	let scrobbler = await (await fetch(`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Exerra&api_key=${apiKey}&format=json&limit=1`)).json()
+
 	let work = [
 		{
 			date: "2022",
@@ -28,7 +34,7 @@ export let loader = () => {
 		{
 			date: "2022",
 			name: "Statty",
-			description: "API for checking the status of various services",
+			description: "API for checking the status of various services (SHUT DOWN)",
 			url: "https://rapidapi.com/Amiichu/api/statty"
 		},
 		{
@@ -53,7 +59,7 @@ export let loader = () => {
 			name: "Javascript"
 		},
 		{
-			type: "Language",
+			type: "Framework",
 			name: "NodeJS"
 		},
 		{
@@ -74,11 +80,37 @@ export let loader = () => {
 		},
 	]
 
-	return {work, knowledge}
+	let currentDate = new Date() // I cannot be arsed to update the website every year so I made this to basically auto calc the time between when I started web and full-stack dev
+	let currentYear = currentDate.getFullYear()
+
+	let dates = {
+		startedWebDev: currentYear - 2019,
+		startedFullStackDev: currentYear - 2020
+	}
+
+	return {work, knowledge, scrobbler: scrobbler.recenttracks, dates, apiKey}
 }
 
 export default function Index() {
 	let data = useLoaderData()
+
+	let { dates, apiKey } = data
+
+	let trackNotState = data.scrobbler.track?.[0]
+
+	const [track, setTrack] = useState(trackNotState)
+
+	useEffect(async () => {
+		setInterval(async () => { // refreshes the "listening to" every 10s
+			let scrobbler = await (await fetch(`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Exerra&api_key=${apiKey}&format=json&limit=1`)).json()
+
+			setTrack(scrobbler.recenttracks.track?.[0])
+		}, 10000)
+
+		new KonamiCode(() => { // we do some mild trolling
+			alert("youre a nerd, like, really??? do you just randomly type the konami code in websites for fun??? get a life\n\n but thank u for visiting my website 💜")
+		})
+	}, [1])
 
 	return (
 		<div>
@@ -88,10 +120,44 @@ export default function Index() {
 				{header()}
 			</div>
 
+			<Section name={"About me"}>
+
+				<div className={"flex flex-wrap gap-6 transition ease-in-out"}>
+					<div className={"w-full basis-1/1 grow lg:basis-1/3 shadow-2xl bg-white rounded-lg p-10"}>
+						<h2 id="work" className="text-3xl font-bold">Bio 🤔</h2>
+						<p className="text-lg">I am a full-stack developer from <a href="https://www.latvia.travel/en" target={"_blank"} className={"inline-block transition duration-150 ease-in-out text-red-800 decoration-red-800 hover:font-bold link link-underline link-underline-black hover:after:content-['🇱🇻']"}>Latvia</a> with {dates.startedWebDev} years of experience as a web developer and {dates.startedFullStackDev} years as a full-stack developer</p>
+					</div>
+
+					<div className={"w-full basis-1/1 grow lg:basis-1/3 shadow-2xl bg-white rounded-lg p-10"}>
+						<h2 id="work" className="text-3xl font-bold">Education 🎓️</h2>
+						<p className="text-lg">I am entirely self-taught from various resources such as: W3Schools, friends and massive amounts of StackOverflow</p>
+					</div>
+
+					<div className={"w-full basis-1/1 grow lg:basis-1/3 shadow-2xl bg-white rounded-lg p-10"}>
+						<h2 id="work" className="text-3xl font-bold">Hobbies 🎮️️</h2>
+						<p className="text-lg">Apart from coding itself, I also enjoy playing various video games (don't ask me to code one though, anything but that)</p>
+					</div>
+
+					<div className={"w-full flex basis-1/1 grow lg:basis-1/3 shadow-2xl bg-white rounded-lg pl-10 overflow-hidden"}>
+						<div className={"py-10"}>
+							<h2 id="work" className="text-3xl font-bold">Listening to 🎵️️</h2>
+							<p className="text-lg">{track?.["@attr"]?.nowplaying ? `${ track?.name } by ${ track?.artist?.["#text"] }` : "Well, nothing really"}</p>
+							{track?.["@attr"]?.nowplaying ? <a href={track?.url} target={"_blank"} className={"text-gray-400 hover:text-selected-text after:content-['_↗']"}>Listen yourself</a> : <></>}
+						</div>
+						{
+							track?.image[2]["#text"] == "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png" // This is the image that gets used when Last.fm doesn't have album cover art
+							|| !track?.["@attr"]?.nowplaying
+								? <></>
+								: <img className={"w-auto h-auto ml-auto float-right aspect-square hidden sm:inline-block lg:hidden xl:block"} src={track?.image[2]["#text"]} />
+						}
+					</div>
+				</div>
+			</Section>
+
 			<Section name={"Showcase"}>
 				<div className={"flex flex-wrap gap-6"}>
 					{data.work.map(work => (
-						<Work key={work.name} date={work.date} name={work.name} description={work.description} href={work.url != "" ? work.url : null}/>
+						<Work key={work.name} date={work.date} name={work.name} description={work.description} href={work.url !== "" ? work.url : null}/>
 					))}
 				</div>
 			</Section>

@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.link-underline {
+    border-bottom-width: 0;
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
+    background-size: 0 3px;
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 150ms ease-in-out;
+}
+
+.link-underline-black {
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#991b1b, #991b1b);
+}
+
+.link-underline:hover {
+    background-size: 130% 3px;
+    background-position: 0% 100%;
+}
