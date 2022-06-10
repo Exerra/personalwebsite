@@ -10,8 +10,6 @@ export let loader = async () => {
 
 	let apiKey = `6aed96567bff1137f593099e9134b3d0` // maybe bad, maybe not. It will be public in network requests anyways lol so
 
-	let scrobbler = await (await fetch(`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Exerra&api_key=${apiKey}&format=json&limit=1`)).json()
-
 	let work = [
 		{
 			date: "2022",
@@ -88,7 +86,7 @@ export let loader = async () => {
 		startedFullStackDev: currentYear - 2020
 	}
 
-	return {work, knowledge, scrobbler: scrobbler.recenttracks, dates, apiKey}
+	return {work, knowledge, dates, apiKey}
 }
 
 export default function Index() {
@@ -96,16 +94,20 @@ export default function Index() {
 
 	let { dates, apiKey } = data
 
-	let trackNotState = data.scrobbler.track?.[0]
+	let trackNotState = []
 
 	const [track, setTrack] = useState(trackNotState)
 
 	useEffect(async () => {
 		setInterval(async () => { // refreshes the "listening to" every 10s
-			let scrobbler = await (await fetch(`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Exerra&api_key=${apiKey}&format=json&limit=1`)).json()
+			let scrobbler = await (await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Exerra&api_key=${apiKey}&format=json&limit=1`)).json()
 
 			setTrack(scrobbler.recenttracks.track?.[0])
 		}, 10000)
+
+		let scrobbler = await (await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Exerra&api_key=${apiKey}&format=json&limit=1`)).json()
+
+		setTrack(scrobbler.recenttracks.track?.[0])
 
 		new KonamiCode(() => { // we do some mild trolling
 			alert("youre a nerd, like, really??? do you just randomly type the konami code in websites for fun??? get a life\n\n but thank u for visiting my website 💜")
@@ -145,7 +147,7 @@ export default function Index() {
 							{track?.["@attr"]?.nowplaying ? <a href={track?.url} target={"_blank"} className={"text-gray-400 hover:text-selected-text after:content-['_↗']"}>Listen yourself</a> : <></>}
 						</div>
 						{
-							track?.image[2]["#text"] == "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png" // This is the image that gets used when Last.fm doesn't have album cover art
+							track?.image?.[2]["#text"] == "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png" // This is the image that gets used when Last.fm doesn't have album cover art
 							|| !track?.["@attr"]?.nowplaying
 								? <></>
 								: <img className={"w-auto h-auto ml-auto float-right aspect-square hidden sm:inline-block lg:hidden xl:block"} src={track?.image[2]["#text"]} />
