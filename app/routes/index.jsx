@@ -100,7 +100,7 @@ export default function Index() {
 
 	useEffect(async () => {
 		setInterval(async () => { // refreshes the "listening to" every 10s
-			let scrobbler = await (await fetch(`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Exerra&api_key=${apiKey}&format=json&limit=1`)).json()
+			let scrobbler = await (await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Exerra&api_key=${apiKey}&format=json&limit=1`)).json()
 
 			setTrack(scrobbler.recenttracks.track?.[0])
 		}, 10000)
