@@ -45,11 +45,10 @@ export class Subtitle extends React.Component {
 
 export class Section extends React.Component {
 	render() {
-		console.log(this.props.subtitle)
 		return (
 			<div className={"container mt-32 justify-between mx-auto px-8 md:px-14 lg:px-24 w-full"}>
 				<Title hasSubheading={this.props.subtitle != undefined ? true : false}>{this.props.name}</Title>
-				{this.props.subtitle != undefined ? <Subtitle>{this.props.subtitle}</Subtitle> : console.log("huh")}
+				{this.props.subtitle != undefined ? <Subtitle>{this.props.subtitle}</Subtitle> : <></>}
 				{this.props.children}
 			</div>
 		)
