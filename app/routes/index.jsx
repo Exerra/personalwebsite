@@ -13,6 +13,12 @@ export let loader = async () => {
 	let work = [
 		{
 			date: "2022",
+			name: "Benchmarks",
+			description: "GPU benchmarks for games ranging from indie platformers to AAA shooters.",
+			url: "https://benchmarks.exerra.xyz"
+		},
+		{
+			date: "2022",
 			name: "eklase",
 			description: "Wrapper and scraper for E-Klase",
 			url: "https://docs.exerra.xyz/docs/eklase-wrapper/intro"
@@ -27,13 +33,13 @@ export let loader = async () => {
 			date: "2022",
 			name: "Phishing API",
 			description: "API for checking if links are known phishing attempts",
-			url: "https://rapidapi.com/Amiichu/api/exerra-phishing-check"
+			url: "https://rapidapi.com/Exerra/api/exerra-phishing-check"
 		},
 		{
 			date: "2022",
 			name: "Statty",
 			description: "API for checking the status of various services (SHUT DOWN)",
-			url: "https://rapidapi.com/Amiichu/api/statty"
+			url: "https://rapidapi.com/Exerra/api/statty"
 		},
 		{
 			date: "Since 2019",
