@@ -7,7 +7,7 @@ import React from "react";
 export class Work extends React.Component {
 	render() {
 		return (
-			<div className={"w-full basis-1/1 grow lg:basis-1/3 shadow-2xl bg-white rounded-lg p-10"}>
+			<div className={"w-full basis-1/1 grow lg:basis-1/3 shadow-2xl bg-white rounded-lg p-10 flex flex-col justify-between"}>
 				<h2 className="font-sm font-bold text-highlight">{this.props.date}</h2>
 				<h2 id="work" className="text-3xl font-bold">{this.props.name}</h2>
 				<p className="section-paragraph">{this.props.description}</p>
