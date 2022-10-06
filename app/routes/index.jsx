@@ -109,9 +109,10 @@ export default function Index() {
 
 		setTrack(scrobbler.recenttracks.track?.[0])
 
-		new KonamiCode(() => { // we do some mild trolling
-			alert("youre a nerd, like, really??? do you just randomly type the konami code in websites for fun??? get a life\n\n but thank u for visiting my website 💜")
-		})
+		/* TODO: Make this show or go to a beta website with unfinished code I am testing
+		new KonamiCode(() => {
+			alert("")
+		})*/
 	}, [1])
 
 	return (
