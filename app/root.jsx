@@ -17,6 +17,14 @@ export function links() {
 			href: "https://cdn.exerra.xyz/png/pfp.png",
 			type: "image/png",
 		},
+		{
+			rel: "preconnect",
+			href: "https://fonts.googleapis.com"
+		},
+		{
+			rel: "stylesheet",
+			href: "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900"
+		}
 	]
 }
 
