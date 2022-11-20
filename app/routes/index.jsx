@@ -8,7 +8,8 @@ import KonamiCode from "konami-code-js"
 import { lastfm, emptyImage } from "../util/lastfm";
 import work from "../util/work";
 import knowledge from "../util/knowledge";
-import lastfmimage from "../modules/lastfmimage"; // very needed
+import lastfmimage from "../modules/lastfmimage";
+import Twemoji from "../modules/twemoji"; // very needed
 
 export let loader = async () => {
 	let currentDate = new Date() // I cannot be arsed to update the website every year so I made this to basically auto calc the time between when I started web and full-stack dev
@@ -54,7 +55,16 @@ export default function Index() {
 				<div className={"flex flex-wrap gap-6 transition ease-in-out"}>
 					<div className={"w-full basis-1/1 grow lg:basis-1/3 shadow-2xl bg-white rounded-lg p-10"}>
 						<h2 id="work" className="text-3xl font-bold">Bio 🤔</h2>
-						<p className="text-lg">I am a full-stack developer from <a href="https://www.latvia.travel/en" target={"_blank"} className={"inline-block transition duration-150 ease-in-out text-red-800 decoration-red-800 hover:font-bold link link-underline link-underline-black hover:after:content-['🇱🇻']"}>Latvia {new Date().getDate() == 18 && new Date().getMonth() + 1 == 11 ? "(Independance day today!!)" : ""}</a> with {dates.startedWebDev} years of experience as a web developer and {dates.startedFullStackDev} years as a full-stack developer</p>
+						<p className="text-lg">
+							I am a full-stack developer from&nbsp;
+							<a
+								href="https://www.latvia.travel/en"
+								target={"_blank"}
+								className={"inline-flex transition duration-150 ease-in-out text-red-800 decoration-red-800 hover:font-bold link link-underline link-underline-black"}
+							>
+								Latvia&nbsp;
+								<Twemoji emoji={"🇱🇻"} />
+							</a>&nbsp;with {dates.startedWebDev} years of experience as a web developer and {dates.startedFullStackDev} years as a full-stack developer</p>
 					</div>
 
 					<div className={"w-full basis-1/1 grow lg:basis-1/3 shadow-2xl bg-white rounded-lg p-10"}>
