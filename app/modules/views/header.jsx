@@ -29,7 +29,7 @@ export default function header() {
 				<div className="bg-theme text-gray-400 font-bold text-center items-center md:text-left fill-blue-400 space-x-5">
 					<Button href={"https://twitter.com/Exerra"} icon={twitter(48)} label={"Link to twitter"} />
 					<Button href={"https://github.com/Exerra"} icon={github(48)} label={"Link to github"} />
-					<Button href={"https://guild.exerra.xyz"} icon={discord(48)} label={"Link to discord"} />
+					<Button href={"https://discord.com/invite/v87MCNwd5e"} icon={discord(48)} label={"Link to discord"} />
 				</div>
 			</div>
 		</div>
